@@ -12,5 +12,7 @@ java -Xms2G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis
 -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs \
 -Daikars.new.flags=true -jar paper.jar --nogui
 
-echo "Server stopped. Press any key to exit..."
-read
+if [ -t 0 ]; then
+  echo "Server stopped. Press any key to exit..."
+  read
+fi
