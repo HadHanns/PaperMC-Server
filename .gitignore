@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# Local runtime files
+.console_history
+logs/
+backups/
+libraries/
+versions/
+cache/
+
+# Dynamic server data
+world/
+world_nether/
+world_the_end/
+plugins/
+config/
+usercache.json
+whitelist.json
+ops.json
+banned-players.json
+banned-ips.json
+paper.jar
+server-icon.png
+
+# Misc
+*.log
