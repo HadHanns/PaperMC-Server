@@ -3,6 +3,9 @@
 # PaperMC Server Start Script
 # Adjust RAM allocation as needed
 
+# Always run from the directory containing this script so paper.jar is accessible
+cd "$(dirname "$0")" || exit 1
+
 java -Xms2G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 \
 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch \
 -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M \

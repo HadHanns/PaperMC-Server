@@ -2,9 +2,26 @@ import os
 import subprocess
 import threading
 import tkinter as tk
+from pathlib import Path
 from tkinter import messagebox, scrolledtext
 
-SERVER_DIR = os.path.dirname(os.path.abspath(__file__))
+def _resolve_server_dir() -> str:
+    """Return the directory containing the real PaperMC server files."""
+    candidates: list[str | os.PathLike[str] | None] = [
+        os.environ.get("PAPERMC_SERVER_DIR"),
+        Path.home() / "Documents" / "Server Minecraft",
+        Path(__file__).resolve().parent,
+    ]
+
+    for candidate in candidates:
+        if not candidate:
+            continue
+        path = Path(candidate).expanduser().resolve()
+        if (path / "start.sh").exists():
+            return str(path)
+    return str(Path(__file__).resolve().parent)
+
+SERVER_DIR = _resolve_server_dir()
 START_SCRIPT = os.path.join(SERVER_DIR, "start.sh")
 BACKUP_SCRIPT = os.path.join(SERVER_DIR, "backup.sh")
 
